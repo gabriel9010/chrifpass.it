@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="it-en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/css.css">
+    <style>
+        /* Aggiungi il CSS necessario per rendere il layout responsive */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Imposta l'altezza del body al 100% della viewport height */
+            overflow: hidden; /* Nasconde lo scrolling verticale */
+            font-family: Arial, sans-serif; /* Aggiungi il font desiderato */
+        }
+
+        #my-video {
+            width: 100%;
+            height: 100%; /* Imposta l'altezza del video al 100% del body */
+            object-fit: cover; /* Ridimensiona il video per coprire l'intera area */
+            /* Aggiungi una posizione relativa per consentire la sovrapposizione */
+        }
+
+        header img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #page {
+            padding: 20px;
+            box-sizing: border-box; /* Assicura che il padding sia incluso nelle dimensioni totali */
+            height: calc(100% - 40px); /* Imposta l'altezza del #page al 100% del body meno il padding */
+        }
+
+        .wrapper {
+            max-width: 960px;
+            margin: 0 auto;
+            height: 100%; /* Imposta l'altezza del wrapper al 100% del #page */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff; /* Cambia il colore del testo */
+            text-align: center;
+        }
+
+        .button-container {
+            margin-top: 20px; /* Aggiungi uno spazio sopra il bottone */
+        }
+
+        .spazio {
+            height: 20px;
+        }
+
+        /* Aggiungi le regole di stile specifiche per dispositivi più piccoli */
+        @media screen and (max-width: 767px) {
+            #page {
+                padding: 10px;
+            }
+
+            .wrapper {
+                max-width: 100%;
+                padding: 0 10px;
+            }
+        }
+
+        /* Bottone a neon */
+        .neon-button {
+            display: none; /* Nascondi il bottone all'inizio */
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            box-shadow: 0 0 10px #fff;
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+            font-size: 24px;
+            top: -34px;
+        }
+
+        .neon-button:before {
+            content: "";
+            background-color: #0ff;
+            border-radius: 100%;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.3;
+            z-index: -1;
+            pointer-events: none;
+            animation: neon-glow 1.5s linear infinite alternate;
+        }
+
+        @keyframes neon-glow {
+            0% {
+                opacity: 0.3;
+            }
+            100% {
+                opacity: 0.8;
+            }
+        }
+
+        .neon-button:hover {
+            box-shadow: 0 0 20px #fff;
+        }
+
+        @keyframes border-color-change {
+            0% {
+                border-color: #0ff;
+            }
+            25% {
+                border-color: #ff0;
+            }
+            50% {
+                border-color: #f0f;
+            }
+            75% {
+                border-color: #0f0;
+            }
+            100% {
+                border-color: #00f;
+            }
+        }
+
+        .neon-button.animated-border {
+            animation: border-color-change 5s linear infinite;
+        }
+
+        .button {
+            display: block;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .neon-button {
+                padding: 8px 16px;
+            }
+
+            .neon-button.animated-border {
+                top: -20px; /* Riduci lo spazio superiore del bottone su dispositivi più piccoli */
+            }
+        }
+
+        /* Stili aggiuntivi per il testo */
+        h1 {
+            font-size: 50px;
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 23px;
+            line-height: 1.5;
+        }
+
+        /*logo*/
+        header img {
+            position: absolute;
+            top: 20px; /* Regola la posizione verticale del logo */
+            left: 20px; /* Regola la posizione orizzontale del logo */
+            z-index: 1; /* Assicurati che il logo sia sopra il background */
+        }
+
+        button.neon-button.animated-border {
+            display: block;
+            margin: 20px auto;
+        }
+
+        @media screen and (max-width: 767px) {
+            h1 {
+                font-size: 32px; /* Riduci la dimensione del titolo su dispositivi più piccoli */
+            }
+
+            p {
+                font-size: 18px; /* Riduci la dimensione del testo paragrafo su dispositivi più piccoli */
+            }
+        }
+
+        /* Aggiungi animazioni per il bottone PassGenerator */
+        .button-container {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fade-in 1s forwards;
+        }
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    <title>PASSGENERATOR</title>
+</head>
+<body>
+    <video autoplay muted loop id="my-video">
+        <source src="video/black_-_13495 (720p).mp4" type="video/mp4">
+    </video>
+    <div id="page">
+        <header>
+            <img src="img/ChriF (150 × 150 px).png" alt="logo">
+        </header>
+        <div class="wrapper">
+            <div class="contenitore_centro">
+                <!-- Contenuto del centro -->
+                <h1 id="title"></h1>
+                <p id="paragraph1"></p>
+                <p id="paragraph2"></p>
+            </div>
+        </div>
+        <div class="spazio"></div>
+    </div>
+    <div class="button-container">
+        <button class="neon-button animated-border" onclick="window.location.href='chrifpass.html'" class="button">PASSGENERATOR</button>
+    </div>
+    <script>
+        // Funzione per aggiungere il testo lettera per lettera
+        function addTextAnimated(text, elementId) {
+            var textArray = text.split("");
+            var textContainer = document.getElementById(elementId);
+            textContainer.innerHTML = "";
+
+            // Aggiungi le lettere una alla volta con un intervallo di tempo
+            textArray.forEach(function(letter, index) {
+                setTimeout(function() {
+                    var span = document.createElement("span");
+                    span.textContent = letter;
+                    textContainer.appendChild(span);
+                }, 75 * index);
+            });
+        }
+
+        // Testo da digitare
+        var titleText = "Benvenuti ragazzi nel primo e miglior generatore di password che voi conosciate";
+        var paragraph1Text =
+            "Come dicevo prima, ragazzi, migliore perché questo generatore non ha un database di salvataggio, non ha nulla. Questo generatore crea password di lunghezza 8, 16 o 32 caratteri che sono sicure al 100%. Le password generate saranno innovative, sicure e non hackerabili. Hanno una funzione specifica: essere sicure, non hackerabili ed essere uniche nel loro genere. Inoltre, una volta generate, non verranno mai proposte di nuovo, garantendo massima sicurezza e esclusività.";
+        var paragraph2Text =
+            "Proteggere le nostre informazioni personali è essenziale nell'era digitale in cui viviamo. Utilizzando il nostro generatore di password, potrete ottenere password affidabili e difficili da indovinare. La vostra sicurezza online sarà rinforzata e sarete protetti da possibili violazioni dei dati o accessi non autorizzati. Non rischiate con password deboli o facili da indovinare, affidatevi al nostro generatore per garantire la vostra tranquillità.";
+
+        // Aggiungi il testo animato
+        addTextAnimated(titleText, "title");
+        addTextAnimated(paragraph1Text, "paragraph1");
+        addTextAnimated(paragraph2Text, "paragraph2");
+
+        // Mostra il bottone PassGenerator quando la digitazione del testo è completa
+        var totalLetters = titleText.length + paragraph1Text.length + paragraph2Text.length;
+        setTimeout(function() {
+            var buttonContainer = document.querySelector(".button-container");
+            buttonContainer.style.opacity = "1";
+            buttonContainer.style.transform = "translateY(0)";
+        }, 75 * totalLetters);
+    </script>
+</body>
+</html>
